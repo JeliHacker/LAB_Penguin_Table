@@ -9,10 +9,12 @@ function(data)
 {
     classroom = data;
     console.log("baller code bro", data);  
-    makeSummary(data[0]);
-    console.log(makeSummary(data[0]));
-   //document.getElemenetById("demo").innerHTML =makeSummary(data[0]);
+    
+    
     console.log(AllGrades(data));
+    //AllGrades(data);
+    
+    //makeTable(data);
 },
 function(err)
 {
@@ -96,7 +98,54 @@ var weightThisGrade = function(penguin)
 
 var AllGrades = function(penguin)
 {
+    var demo = d3.select("#demo")
     var AllTotals = penguin.map(makeSummary);
+    var showPictures = 
+        d3.select("tbody")
+        .selectAll("tr")
+        .data(penguin)
+        .enter()
+        .append("tr")
+    
+    showPictures
+    .append("img")
+    .text(function(totals){
+            // return makeSummary.picture;})
+            return totals.picture
+        })
+        .attr("src", function(totals)
+              {
+                return "penguins/" + totals.picture
+              })
+    
+    showPictures
+    .append("td")
+    .text(function(totals)
+         {
+        return totals.quizes
+    })
+    
+    
+    
     return AllTotals;
+    
+}
+
+var AllActualGrades = function(penguin)
+{
+    
+        
+        /*d3.select("tbody").append("tr")
+        .selectAll("td")
+        .data(penguin)
+        .enter()
+        .append("td")
+        .text(function(totals)
+            {
+                // return makeSummary.picture;})
+                var totals = AllTotals;
+                return totals.meanQuiz
+            })
+    */
 }
 //why did this work???
