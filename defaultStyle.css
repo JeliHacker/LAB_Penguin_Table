@@ -53,3 +53,13 @@ q{
     font-family: Times New Roman;
     background-color: rgba(192, 192, 192, 0.6);
 }
+
+table{
+    border: 1px solid black;
+    align-content: center;
+    background-color: antiquewhite;
+}
+
+td, th, tr{
+    border: 1px solid black;
+}

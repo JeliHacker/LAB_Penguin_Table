@@ -10,7 +10,7 @@ function(data)
     classroom = data;
     console.log("baller code bro", data);  
     
-    
+    AllGrades(data);
     console.log(AllGrades(data));
     //AllGrades(data);
     
@@ -96,6 +96,12 @@ var weightThisGrade = function(penguin)
     return weightedGrade;
 }
 
+
+
+
+
+
+//THE FUNCTION WHERE ALL THE MAGIC HAPPENS
 var AllGrades = function(penguin)
 {
     var demo = d3.select("#demo")
@@ -118,18 +124,151 @@ var AllGrades = function(penguin)
                 return "penguins/" + totals.picture
               })
     
+    
+    
     showPictures
     .append("td")
     .text(function(totals)
-         {
-        return totals.quizes
+    {
+        var getMeanQuiz = function(penguin)
+        {
+            var quizzes = penguin.quizes;
+            var quizgrades = quizzes.map(getGrade)
+            var meanQuizzes = d3.mean(quizgrades)
+            return meanQuizzes;
+        }
+        return getMeanQuiz(totals);
     })
     
     
     
-    return AllTotals;
     
+    
+    
+    
+    
+    
+    //HOMEWORK AVERAGE
+    showPictures
+    .append("td")
+    .text(function(totals)
+         {
+        var getMeanHomework = function(penguin)
+{
+    var homeworks = penguin.homework;
+    var homeworkgrades = homeworks.map(getGrade)
+    var meanHomework = d3.mean(homeworkgrades)
+    return meanHomework;
 }
+        return getMeanHomework(totals);
+    })
+    //HOMEWORK AVERAGE
+    
+    
+    
+    //TEST AVERAGE
+    showPictures
+    .append("td")
+    .text(function(totals)
+         {
+        
+        var getMeanTests = function(penguin)
+{
+    var tests = penguin.test;
+    var testGrades = tests.map(getGrade)
+    var meanTest = d3.mean(testGrades)
+    return meanTest;
+}
+        return getMeanTests(totals);
+    })
+    //TEST AVERAGE
+    
+    
+    //FINAL GRADE
+    showPictures
+    .append("td")
+    .text(function(totals)
+    {
+        var getFinal = function(penguin)
+        {
+            var final = penguin.final;
+            var mappedFinal = final.map(getGrade)
+            var meanFinal = d3.mean(mappedFinal)
+            return meanFinal;
+        }
+        return getFinal(totals);
+    })
+    //FINAL GRADE
+    
+    
+    
+    
+    //WEIGHTED FINAL GRADE
+    showPictures
+    .append("td")
+    .text(function(totals)
+         {
+        var weightThisGrade1 = function(penguin)
+{
+    var QuizTotal = getMeanQuiz(penguin);
+    var HomeworkTotal = getMeanHomework(penguin);
+    var TestTotal = getMeanTests(penguin);
+    var FinalTotal = getFinal(penguin);
+    
+    var weightedQuiz = .2 * QuizTotal;
+    var weightedHomework = .15 * HomeworkTotal;
+    var weightedTest = .3 * TestTotal;
+    var weightedFinal = .35 * FinalTotal;
+    
+    var weightedGrade = weightedQuiz + weightedHomework + weightedTest + weightedFinal;
+    
+    return weightedGrade;
+}
+       return weightThisGrade1(totals)
+    })
+    //WEIGHTED FINAL GRADE
+    
+    
+    return AllTotals;
+}
+//END OF ALLGRADES
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//DRAFT CODE
+
 
 var AllActualGrades = function(penguin)
 {
