@@ -1,0 +1,55 @@
+body{
+    
+    background-color: #00A9D8;
+    font-size: 20px;
+    font-family: Helvetica;
+    text-align: center;
+}
+/*
+textarea{
+    width= "400%";
+}
+*/
+h1{
+    text-decoration: underline;
+}
+div{
+    border: 2px solid black;
+}
+
+.giveBorder{
+    border: 2px solid black;
+    color: #ffffcc;
+    font-size: 40px;
+}
+h4{
+    line-height: 30px;
+}
+
+.code{
+    font-family: Monaco;
+    background-color: #ffffff;
+}
+
+.important{
+    color: red;
+}
+
+.note{
+    color: greenyellow;
+}
+
+.note:before{
+    content: "*";
+}
+
+.instructions{
+    font-family: Monaco;
+    background-color: beige;
+    color: black;
+}
+
+q{
+    font-family: Times New Roman;
+    background-color: rgba(192, 192, 192, 0.6);
+}
